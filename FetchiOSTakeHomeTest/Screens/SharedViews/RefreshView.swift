@@ -8,7 +8,8 @@
 import UIKit
 
 protocol RefreshViewDelegate: AnyObject {
-  func didTapRefreshButton()
+  @MainActor
+  func didTapRefreshButton(_ button: UIButton)
 }
 
 final class RefreshView: UIView {
@@ -41,6 +42,7 @@ final class RefreshView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    setupView()
   }
   
   required init?(coder: NSCoder) {
@@ -58,7 +60,8 @@ final class RefreshView: UIView {
       informationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4.0),
       informationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4.0),
       
-      refreshButton.topAnchor.constraint(equalTo: informationLabel.bottomAnchor, constant: 8.0)
+      refreshButton.topAnchor.constraint(equalTo: informationLabel.bottomAnchor, constant: 8.0),
+      refreshButton.centerXAnchor.constraint(equalTo: centerXAnchor)
     ])
     
     refreshButton.addTarget(self, action: #selector(didTapRefreshButton), for: .touchUpInside)
@@ -68,9 +71,13 @@ final class RefreshView: UIView {
     informationLabel.text = labelText
   }
   
+  func setRefreshButtonText(_ buttonText: String) {
+    refreshButton.configuration?.title = buttonText
+  }
+  
   // MARK: Actions
   
   @objc private func didTapRefreshButton(_ sender: UIButton) {
-    delegate?.didTapRefreshButton()
+    delegate?.didTapRefreshButton(sender)
   }
 }

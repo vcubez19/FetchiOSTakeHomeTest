@@ -19,7 +19,13 @@ final class ItemsListViewModel {
     return items.count
   }
   
-  var fetchItemsFailed: Bool = false
+  var fetchItemsFailedListener: ((Bool) -> Void)?
+  
+  var fetchItemsFailed: Bool = false {
+    didSet {
+      fetchItemsFailedListener?(fetchItemsFailed)
+    }
+  }
   
   func fetchItems() async {
     do {

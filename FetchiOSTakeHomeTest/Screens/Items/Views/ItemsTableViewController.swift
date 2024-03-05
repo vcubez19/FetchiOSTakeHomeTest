@@ -11,7 +11,7 @@ final class ItemsTableViewController: UITableViewController {
   
   // MARK: Stored properties
   
-  private let itemsListViewModel: ItemsListViewModel = ItemsListViewModel()
+  let itemsListViewModel: ItemsListViewModel = ItemsListViewModel()
   
   private let itemsLoadingIndicatorView: UIActivityIndicatorView = {
     let itemsLoadingIndicatorView = UIActivityIndicatorView()
@@ -25,11 +25,13 @@ final class ItemsTableViewController: UITableViewController {
   private let refreshView: RefreshView = {
     let refreshView = RefreshView()
     refreshView.setInformationLabelText("Something went wrong.")
+    refreshView.setRefreshButtonText("Refresh")
+    refreshView.isHidden = true
     refreshView.translatesAutoresizingMaskIntoConstraints = false
     
     return refreshView
   }()
-    
+  
   // MARK: View lifecycle
   
   override func viewDidLoad() {
@@ -57,24 +59,33 @@ final class ItemsTableViewController: UITableViewController {
     tableView.register(ItemTableViewCell.self, forCellReuseIdentifier: ItemTableViewCell.reuseID)
     
     view.addSubview(itemsLoadingIndicatorView)
-    
     view.addSubview(refreshView)
     refreshView.delegate = self
+    
+    itemsListViewModel.fetchItemsFailedListener = { [weak self] fetchFailed in
+      DispatchQueue.main.async {
+        self?.refreshView.isHidden = !fetchFailed
+      }
+    }
     
     NSLayoutConstraint.activate([
       itemsLoadingIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       itemsLoadingIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
       
       refreshView.topAnchor.constraint(equalTo: view.topAnchor, constant: 44.0),
-      refreshView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2.0),
-      refreshView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+      refreshView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      refreshView.heightAnchor.constraint(equalToConstant: 100.0)
     ])
   }
   
+  @MainActor
   private func fetchItems() {
     Task {
       itemsLoadingIndicatorView.startAnimating()
+      
       await itemsListViewModel.fetchItems()
+      
+      tableView.reloadData()
       itemsLoadingIndicatorView.stopAnimating()
     }
   }
@@ -90,7 +101,16 @@ final class ItemsTableViewController: UITableViewController {
 // MARK: RefreshViewDelegate
 
 extension ItemsTableViewController: RefreshViewDelegate {
-  func didTapRefreshButton() {
-    print("Tapped refresh button.")
+  func didTapRefreshButton(_ button: UIButton) {
+    Task {
+      button.configuration?.showsActivityIndicator = true
+      button.isEnabled = false
+      
+      await itemsListViewModel.fetchItems()
+      
+      self.tableView.reloadData()
+      button.configuration?.showsActivityIndicator = false
+      button.isEnabled = true
+    }
   }
 }
