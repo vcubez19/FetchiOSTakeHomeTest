@@ -20,10 +20,10 @@ extension ItemsTableViewController {
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListSectionView.reuseID) as! ListSectionView
     
-    let listId = itemsListViewModel.listAtIndex(section)
+    let list = itemsListViewModel.listNameAtIndex(section)
     let numberOfItemsInList = itemsListViewModel.numberOfItemsInListAtIndex(section)
     
-    header.setSectionName("List \(listId)")
+    header.setSectionName(list)
     header.setNumberOfItemsInSection(numberOfItemsInList)
     
     return header

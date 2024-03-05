@@ -32,6 +32,8 @@ final class ItemsTableViewController: UITableViewController {
     return refreshView
   }()
   
+  private var itemsHeaderView: ItemsHeaderView!
+  
   // MARK: View lifecycle
   
   override func viewDidLoad() {

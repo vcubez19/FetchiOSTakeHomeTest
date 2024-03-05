@@ -65,8 +65,9 @@ final class ItemsListViewModel {
     return itemsList[index].value.count
   }
   
-  func listAtIndex(_ list: Int) -> Int {
-    return itemsList[list].key
+  func listNameAtIndex(_ list: Int) -> String {
+    let listId = itemsList[list].key
+    return "List \(listId)"
   }
   
   func itemAtIndexPath(_ list: Int, row: Int) -> String? {
