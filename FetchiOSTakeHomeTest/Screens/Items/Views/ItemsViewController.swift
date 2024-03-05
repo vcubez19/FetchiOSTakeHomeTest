@@ -7,11 +7,20 @@
 
 import UIKit
 
-final class ItemsTableViewController: UITableViewController {
+final class ItemsViewController: UIViewController {
   
   // MARK: Stored properties
   
   let itemsListViewModel: ItemsListViewModel = ItemsListViewModel()
+  
+  let tableView: UITableView = {
+    let tableView = UITableView(frame: .zero, style: .plain)
+    tableView.register(ItemTableViewCell.self, forCellReuseIdentifier: ItemTableViewCell.reuseID)
+    tableView.register(ListSectionView.self, forHeaderFooterViewReuseIdentifier: ListSectionView.reuseID)
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    
+    return tableView
+  }()
   
   private let itemsLoadingIndicatorView: UIActivityIndicatorView = {
     let itemsLoadingIndicatorView = UIActivityIndicatorView()
@@ -39,6 +48,7 @@ final class ItemsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupNavigationBar()
+    setupHeader()
     setupView()
     fetchItems()
   }
@@ -50,12 +60,30 @@ final class ItemsTableViewController: UITableViewController {
     title = "Items"
   }
   
-  private func setupView() {
-    tableView.register(ItemTableViewCell.self, forCellReuseIdentifier: ItemTableViewCell.reuseID)
-    tableView.register(ListSectionView.self, forHeaderFooterViewReuseIdentifier: ListSectionView.reuseID)
+  private func setupHeader() {
+    itemsHeaderView = ItemsHeaderView(frame: .zero, itemsListViewModel: itemsListViewModel)
+    itemsHeaderView.translatesAutoresizingMaskIntoConstraints = false
     
+    itemsHeaderView.delegate = self
+
+    view.addSubview(itemsHeaderView)
+    
+    NSLayoutConstraint.activate([
+      itemsHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      itemsHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      itemsHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      itemsHeaderView.heightAnchor.constraint(equalToConstant: 50.0)
+    ])
+  }
+  
+  private func setupView() {
+
+    view.addSubview(tableView)
     view.addSubview(itemsLoadingIndicatorView)
     view.addSubview(refreshView)
+    
+    tableView.delegate = self
+    tableView.dataSource = self
     refreshView.delegate = self
     
     itemsListViewModel.fetchItemsFailedListener = { [weak self] fetchFailed in
@@ -65,6 +93,11 @@ final class ItemsTableViewController: UITableViewController {
     }
     
     NSLayoutConstraint.activate([
+      tableView.topAnchor.constraint(equalTo: itemsHeaderView.bottomAnchor),
+      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      
       itemsLoadingIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       itemsLoadingIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
       
@@ -82,6 +115,8 @@ final class ItemsTableViewController: UITableViewController {
       await itemsListViewModel.fetchItems()
       
       tableView.reloadData()
+      itemsHeaderView.listsCollectionView.reloadData()
+      
       itemsLoadingIndicatorView.stopAnimating()
     }
   }
@@ -89,7 +124,7 @@ final class ItemsTableViewController: UITableViewController {
 
 // MARK: RefreshViewDelegate
 
-extension ItemsTableViewController: RefreshViewDelegate {
+extension ItemsViewController: RefreshViewDelegate {
   func didTapRefreshButton(_ button: UIButton) {
     Task {
       button.configuration?.showsActivityIndicator = true
@@ -98,6 +133,8 @@ extension ItemsTableViewController: RefreshViewDelegate {
       await itemsListViewModel.fetchItems()
       
       self.tableView.reloadData()
+      itemsHeaderView.listsCollectionView.reloadData()
+
       button.configuration?.showsActivityIndicator = false
       button.isEnabled = true
     }

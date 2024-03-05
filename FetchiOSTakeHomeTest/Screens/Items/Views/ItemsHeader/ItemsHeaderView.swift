@@ -17,17 +17,16 @@ final class ItemsHeaderView: UIView {
   
   let itemsListViewModel: ItemsListViewModel
   
-  private let listsCollectionView: UICollectionView = {
+  let listsCollectionView: UICollectionView = {
     let listsCollectionViewLayout = UICollectionViewFlowLayout()
-//    listsCollectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-    listsCollectionViewLayout.itemSize = CGSize(width: 100.0, height: 100.0)
+    listsCollectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
     listsCollectionViewLayout.scrollDirection = .horizontal
     
     let listsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: listsCollectionViewLayout)
     
     listsCollectionView.translatesAutoresizingMaskIntoConstraints = false
     listsCollectionView.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.reuseID)
-    
+        
     return listsCollectionView
   }()
   
@@ -58,7 +57,5 @@ final class ItemsHeaderView: UIView {
       listsCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
       listsCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
     ])
-    
-    listsCollectionView.reloadData()
   }
 }

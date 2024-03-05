@@ -1,5 +1,5 @@
 //
-//  ItemsTableViewControllerDelegate.swift
+//  ItemsTableViewDelegate.swift
 //  FetchiOSTakeHomeTest
 //
 //  Created by Vincent Cubit on 3/4/24.
@@ -8,16 +8,16 @@
 import Foundation
 import UIKit
 
-extension ItemsTableViewController {
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+extension ItemsViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 50.0
   }
   
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
   }
   
-  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListSectionView.reuseID) as! ListSectionView
     
     let list = itemsListViewModel.listNameAtIndex(section)
@@ -29,7 +29,7 @@ extension ItemsTableViewController {
     return header
   }
   
-  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50.0
   }
 }

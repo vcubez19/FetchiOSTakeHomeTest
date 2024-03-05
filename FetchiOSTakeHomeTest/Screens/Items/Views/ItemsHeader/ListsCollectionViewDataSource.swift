@@ -1,5 +1,5 @@
 //
-//  ItemsHeaderViewDataSource.swift
+//  ListsCollectionViewDataSource.swift
 //  FetchiOSTakeHomeTest
 //
 //  Created by Vincent Cubit on 3/5/24.
@@ -16,7 +16,7 @@ extension ItemsHeaderView: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.reuseID, for: indexPath) as! ListCollectionViewCell
     
-    let list = itemsListViewModel.listNameAtIndex(indexPath.section)
+    let list = itemsListViewModel.listNameAtIndex(indexPath.row)
     cell.setList(list)
     
     return cell

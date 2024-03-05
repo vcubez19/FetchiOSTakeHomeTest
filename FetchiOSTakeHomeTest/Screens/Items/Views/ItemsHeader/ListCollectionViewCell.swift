@@ -21,6 +21,8 @@ final class ListCollectionViewCell: UICollectionViewCell {
     
     let listButton = UIButton()
     listButton.configuration = listButtonConfiguration
+    listButton.isUserInteractionEnabled = false
+    listButton.translatesAutoresizingMaskIntoConstraints = false
     
     return listButton
   }()
@@ -40,7 +42,11 @@ final class ListCollectionViewCell: UICollectionViewCell {
   
   private func setupView() {
     contentView.addSubview(listButton)
-    listButton.frame = contentView.bounds
+    NSLayoutConstraint.activate([
+      listButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+      listButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4.0),
+      listButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4.0)
+    ])
   }
   
   func setList(_ listName: String) {

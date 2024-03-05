@@ -18,7 +18,7 @@ final class ItemsListViewModel {
   var listsCount: Int {
     return itemsList.count
   }
-    
+  
   var fetchItemsFailedListener: ((Bool) -> Void)?
   
   var fetchItemsFailed: Bool = false {
@@ -56,7 +56,7 @@ final class ItemsListViewModel {
     }
     
     // Sort keys and sort values by name
-    let sortedItems = groupedItemsDictionary.mapValues({ $0.sorted(by: { $0.itemNameNumber! < $1.itemNameNumber! }) }).sorted(by: { $0.key < $1.key })
+    let sortedItems = groupedItemsDictionary.mapValues({ $0.sorted(by: { ($0.itemNameNumber) < ($1.itemNameNumber) }) }).sorted(by: { $0.key < $1.key })
     
     return sortedItems
   }
@@ -68,6 +68,10 @@ final class ItemsListViewModel {
   func listNameAtIndex(_ list: Int) -> String {
     let listId = itemsList[list].key
     return "List \(listId)"
+  }
+  
+  func listIdAtIndex(_ list: Int) -> Int {
+    return itemsList[list].key
   }
   
   func itemAtIndexPath(_ list: Int, row: Int) -> String? {
