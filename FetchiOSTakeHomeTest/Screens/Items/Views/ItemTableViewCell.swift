@@ -13,6 +13,8 @@ final class ItemTableViewCell: UITableViewCell {
     return String(describing: self)
   }
   
+  // MARK: View lifecycle
+  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     layoutView()
@@ -21,6 +23,8 @@ final class ItemTableViewCell: UITableViewCell {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  // MARK: Methods
   
   private func layoutView() {
     

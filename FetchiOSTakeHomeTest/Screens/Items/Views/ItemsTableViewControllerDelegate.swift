@@ -16,4 +16,20 @@ extension ItemsTableViewController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
   }
+  
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListSectionView.reuseID) as! ListSectionView
+    
+    let listId = itemsListViewModel.listAtIndex(section)
+    let numberOfItemsInList = itemsListViewModel.numberOfItemsInListAtIndex(section)
+    
+    header.setSectionName("List \(listId)")
+    header.setNumberOfItemsInSection(numberOfItemsInList)
+    
+    return header
+  }
+  
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 50.0
+  }
 }

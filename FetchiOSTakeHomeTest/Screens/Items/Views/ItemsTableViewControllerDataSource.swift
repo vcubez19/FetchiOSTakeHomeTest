@@ -10,11 +10,11 @@ import UIKit
 
 extension ItemsTableViewController {
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
+    return itemsListViewModel.listsCount
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return itemsListViewModel.itemsCount
+    return itemsListViewModel.numberOfItemsInListAtIndex(section)
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -46,17 +46,11 @@ final class ItemsTableViewController: UITableViewController {
   private func setupNavigationBar() {
     navigationController?.navigationBar.prefersLargeTitles = true
     title = "Items"
-    
-    let settingsButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(didTapSettingsButton))
-    settingsButton.tintColor = .label
-    navigationItem.rightBarButtonItem = settingsButton
   }
   
   private func setupView() {
     tableView.register(ItemTableViewCell.self, forCellReuseIdentifier: ItemTableViewCell.reuseID)
+    tableView.register(ListSectionView.self, forHeaderFooterViewReuseIdentifier: ListSectionView.reuseID)
     
     view.addSubview(itemsLoadingIndicatorView)
     view.addSubview(refreshView)
@@ -88,13 +82,6 @@ final class ItemsTableViewController: UITableViewController {
       tableView.reloadData()
       itemsLoadingIndicatorView.stopAnimating()
     }
-  }
-  
-  // MARK: Actions
-  
-  @objc private func didTapSettingsButton() {
-    let settingsViewController = SettingsViewController()
-    navigationController?.pushViewController(settingsViewController, animated: true)
   }
 }
 
