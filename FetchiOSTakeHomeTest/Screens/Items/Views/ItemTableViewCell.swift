@@ -9,9 +9,19 @@ import UIKit
 
 final class ItemTableViewCell: UITableViewCell {
   
+  // MARK: Stored properties
+  
   static var reuseID: String {
     return String(describing: self)
   }
+  
+  private let itemNameLabel: UILabel = {
+    let itemNameLabel = UILabel()
+    itemNameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+    itemNameLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+    return itemNameLabel
+  }()
   
   // MARK: View lifecycle
   
@@ -27,6 +37,15 @@ final class ItemTableViewCell: UITableViewCell {
   // MARK: Methods
   
   private func layoutView() {
+    contentView.addSubview(itemNameLabel)
     
+    NSLayoutConstraint.activate([
+      itemNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0),
+      itemNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+    ])
+  }
+  
+  func setItemText(_ itemText: String?) {
+    itemNameLabel.text = itemText
   }
 }

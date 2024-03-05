@@ -9,11 +9,11 @@ import UIKit
 
 final class ListSectionView: UITableViewHeaderFooterView {
 
+  // MARK: Stored properties
+
   static var reuseID: String {
     return String(describing: self)
   }
-  
-  // MARK: Stored properties
   
   private let sectionNameLabel: UILabel = {
     let sectionNameLabel = UILabel()

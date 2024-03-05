@@ -68,4 +68,8 @@ final class ItemsListViewModel {
   func listAtIndex(_ list: Int) -> Int {
     return itemsList[list].key
   }
+  
+  func itemAtIndexPath(_ list: Int, row: Int) -> String? {
+    return itemsList[list].value[row].name
+  }
 }
