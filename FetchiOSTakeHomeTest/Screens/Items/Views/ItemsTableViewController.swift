@@ -21,13 +21,14 @@ final class ItemsTableViewController: UITableViewController {
     
     return itemsLoadingIndicatorView
   }()
-  
+    
   // MARK: View lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupNavigationBar()
     setupView()
+    fetchItems()
   }
   
   // MARK: Methods
@@ -53,6 +54,14 @@ final class ItemsTableViewController: UITableViewController {
       itemsLoadingIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       itemsLoadingIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
     ])
+  }
+  
+  private func fetchItems() {
+    Task {
+      itemsLoadingIndicatorView.startAnimating()
+      await itemsListViewModel.fetchItems()
+      itemsLoadingIndicatorView.stopAnimating()
+    }
   }
   
   // MARK: Actions
