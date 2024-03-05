@@ -21,6 +21,14 @@ final class ItemsTableViewController: UITableViewController {
     
     return itemsLoadingIndicatorView
   }()
+  
+  private let refreshView: RefreshView = {
+    let refreshView = RefreshView()
+    refreshView.setInformationLabelText("Something went wrong.")
+    refreshView.translatesAutoresizingMaskIntoConstraints = false
+    
+    return refreshView
+  }()
     
   // MARK: View lifecycle
   
@@ -50,9 +58,16 @@ final class ItemsTableViewController: UITableViewController {
     
     view.addSubview(itemsLoadingIndicatorView)
     
+    view.addSubview(refreshView)
+    refreshView.delegate = self
+    
     NSLayoutConstraint.activate([
       itemsLoadingIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      itemsLoadingIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+      itemsLoadingIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+      
+      refreshView.topAnchor.constraint(equalTo: view.topAnchor, constant: 44.0),
+      refreshView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2.0),
+      refreshView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     ])
   }
   
@@ -69,5 +84,13 @@ final class ItemsTableViewController: UITableViewController {
   @objc private func didTapSettingsButton() {
     let settingsViewController = SettingsViewController()
     navigationController?.pushViewController(settingsViewController, animated: true)
+  }
+}
+
+// MARK: RefreshViewDelegate
+
+extension ItemsTableViewController: RefreshViewDelegate {
+  func didTapRefreshButton() {
+    print("Tapped refresh button.")
   }
 }

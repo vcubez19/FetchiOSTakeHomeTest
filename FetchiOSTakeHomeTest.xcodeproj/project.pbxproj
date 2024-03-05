@@ -27,6 +27,7 @@
 		325D9F382B96A00300B97FD6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325D9F372B96A00300B97FD6 /* API.swift */; };
 		325D9F3D2B96A13700B97FD6 /* FetchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325D9F3C2B96A13700B97FD6 /* FetchAPI.swift */; };
 		325D9F3F2B96A34800B97FD6 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325D9F3E2B96A34800B97FD6 /* APIError.swift */; };
+		325D9F422B96D6DC00B97FD6 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325D9F412B96D6DC00B97FD6 /* RefreshView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		325D9F372B96A00300B97FD6 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		325D9F3C2B96A13700B97FD6 /* FetchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAPI.swift; sourceTree = "<group>"; };
 		325D9F3E2B96A34800B97FD6 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		325D9F412B96D6DC00B97FD6 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,8 +161,9 @@
 		325D9F1C2B96921900B97FD6 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				325D9F2C2B969E4F00B97FD6 /* Settings */,
+				325D9F402B96D69500B97FD6 /* SharedViews */,
 				325D9F1D2B96923E00B97FD6 /* Items */,
+				325D9F2C2B969E4F00B97FD6 /* Settings */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -262,6 +265,14 @@
 				325D9F3C2B96A13700B97FD6 /* FetchAPI.swift */,
 			);
 			path = APIs;
+			sourceTree = "<group>";
+		};
+		325D9F402B96D69500B97FD6 /* SharedViews */ = {
+			isa = PBXGroup;
+			children = (
+				325D9F412B96D6DC00B97FD6 /* RefreshView.swift */,
+			);
+			path = SharedViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +411,7 @@
 				325D9F342B969FB300B97FD6 /* HTTPMethod.swift in Sources */,
 				325D9EF02B9691DD00B97FD6 /* ItemsTableViewController.swift in Sources */,
 				325D9F292B96985500B97FD6 /* Item.swift in Sources */,
+				325D9F422B96D6DC00B97FD6 /* RefreshView.swift in Sources */,
 				325D9F3D2B96A13700B97FD6 /* FetchAPI.swift in Sources */,
 				325D9F2B2B96991500B97FD6 /* ItemsListViewModel.swift in Sources */,
 				325D9F3F2B96A34800B97FD6 /* APIError.swift in Sources */,
