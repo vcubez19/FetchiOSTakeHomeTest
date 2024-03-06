@@ -101,7 +101,7 @@ final class ItemsViewController: UIViewController {
       itemsLoadingIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       itemsLoadingIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
       
-      refreshView.topAnchor.constraint(equalTo: view.topAnchor, constant: 44.0),
+      refreshView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44.0),
       refreshView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       refreshView.heightAnchor.constraint(equalToConstant: 100.0)
     ])
@@ -130,6 +130,7 @@ extension ItemsViewController: RefreshViewDelegate {
       button.configuration?.showsActivityIndicator = true
       button.isEnabled = false
       
+      try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
       await itemsListViewModel.fetchItems()
       
       self.tableView.reloadData()
