@@ -43,9 +43,10 @@ final class ListCollectionViewCell: UICollectionViewCell {
   private func setupView() {
     contentView.addSubview(listButton)
     NSLayoutConstraint.activate([
-      listButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-      listButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4.0),
-      listButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4.0)
+      listButton.topAnchor.constraint(equalTo: contentView.topAnchor),
+      listButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+      listButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+      listButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
     ])
   }
   

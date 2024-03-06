@@ -10,7 +10,7 @@ import UIKit
 
 extension ItemsHeaderView: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return itemsListViewModel.filteredListsCount
+    return itemsListViewModel.itemListsCount
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

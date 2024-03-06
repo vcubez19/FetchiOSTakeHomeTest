@@ -17,6 +17,7 @@ final class ListSectionView: UITableViewHeaderFooterView {
   
   private let sectionNameLabel: UILabel = {
     let sectionNameLabel = UILabel()
+    sectionNameLabel.textColor = .white
     sectionNameLabel.font = UIFont.preferredFont(forTextStyle: .headline)
     sectionNameLabel.font = UIFont.boldSystemFont(ofSize: sectionNameLabel.font.pointSize)
     sectionNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +54,7 @@ final class ListSectionView: UITableViewHeaderFooterView {
   
   private func setupView() {
     
-    contentView.backgroundColor = .app
+    contentView.backgroundColor = .systemBlue
     
     contentView.addSubview(sectionNameLabel)
     contentView.addSubview(numberOfItemsInSectionView)

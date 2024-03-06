@@ -47,6 +47,7 @@ final class ItemsHeaderView: UIView {
   // MARK: Methods
   
   private func setupView() {
+    backgroundColor = .systemBackground
     addSubview(listsCollectionView)
     listsCollectionView.delegate = self
     listsCollectionView.dataSource = self

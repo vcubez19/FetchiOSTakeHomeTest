@@ -56,8 +56,11 @@ final class ItemsViewController: UIViewController {
   // MARK: Methods
   
   private func setupNavigationBar() {
+    navigationController?.navigationBar.backgroundColor = .systemBackground
     navigationController?.navigationBar.prefersLargeTitles = true
     title = "Items"
+    
+    // TODO: Make new controller that shows searched items
     
     navigationItem.searchController = UISearchController(searchResultsController: nil)
     navigationItem.searchController?.searchBar.placeholder = "Find an item"
@@ -82,6 +85,7 @@ final class ItemsViewController: UIViewController {
   
   private func setupView() {
 
+    view.backgroundColor = .systemBackground
     view.addSubview(tableView)
     view.addSubview(itemsLoadingIndicatorView)
     view.addSubview(refreshView)
@@ -97,7 +101,7 @@ final class ItemsViewController: UIViewController {
     }
     
     NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: itemsHeaderView.bottomAnchor),
+      tableView.topAnchor.constraint(equalTo: itemsHeaderView.bottomAnchor, constant: 8.0),
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
