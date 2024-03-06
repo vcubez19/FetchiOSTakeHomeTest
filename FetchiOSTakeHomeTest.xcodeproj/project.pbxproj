@@ -173,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				325D9EEF2B9691DD00B97FD6 /* ItemsViewController.swift */,
-				325D9F5D2B9817F900B97FD6 /* ItemSearchBarDelegate.swift */,
 				3260855F2B98D6AC002E769F /* ItemsSearchBar */,
 				325D9F522B97E7D100B97FD6 /* ItemsTableView */,
 				325D9F492B97BAEE00B97FD6 /* ItemsHeader */,
@@ -301,6 +300,7 @@
 		3260855F2B98D6AC002E769F /* ItemsSearchBar */ = {
 			isa = PBXGroup;
 			children = (
+				325D9F5D2B9817F900B97FD6 /* ItemSearchBarDelegate.swift */,
 				326085602B98D6C5002E769F /* ItemSearchBarPlaceholder.swift */,
 			);
 			path = ItemsSearchBar;

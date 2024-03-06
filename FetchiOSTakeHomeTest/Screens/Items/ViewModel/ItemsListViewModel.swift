@@ -35,7 +35,7 @@ final class ItemsListViewModel {
     return itemsList.count
   }
   
-  /// Tells the view that fetching items failed or not.
+  /// Tells the view that fetching items failed or succeeded.
   var fetchItemsFailedListener: ((Bool) -> Void)?
   
   var fetchItemsFailed: Bool = false {
@@ -107,10 +107,7 @@ final class ItemsListViewModel {
   
   func setFilteredItemsListWithSearchText(_ searchText: String) {
     guard let itemNumberFromSearchText = Int(searchText) else { return }
-    guard !searchText.isEmpty else {
-      filteredItems = flattenedItems
-      return
-    }
+    guard !searchText.isEmpty else { return }
     
     filteredItems = flattenedItems.filter({ $0.itemNameNumber == itemNumberFromSearchText })
   }

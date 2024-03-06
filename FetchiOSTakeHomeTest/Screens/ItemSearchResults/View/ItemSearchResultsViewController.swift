@@ -45,11 +45,9 @@ final class ItemSearchResultsViewController: UITableViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: ItemTableViewCell.reuseID, for: indexPath) as! ItemTableViewCell
     
     let item = itemsListViewModel.filteredItemAtIndex(indexPath.row)
-    
     cell.setItemText(item.name)
     
     let listLocationName = itemsListViewModel.listLocationForItem(item)
-    
     cell.setItemListName(listLocationName)
     
     return cell
