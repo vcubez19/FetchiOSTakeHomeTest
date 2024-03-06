@@ -65,7 +65,7 @@ final class ItemsViewController: UIViewController {
     itemSearchResultsController = ItemSearchResultsViewController(itemsListViewModel: itemsListViewModel)
     
     navigationItem.searchController = UISearchController(searchResultsController: itemSearchResultsController)
-    navigationItem.searchController?.searchBar.placeholder = "Find an item"
+    navigationItem.searchController?.searchBar.placeholder = ItemSearchBarPlaceholder.notEditing.rawValue
     navigationItem.searchController?.searchBar.keyboardType = .numberPad
     navigationItem.searchController?.searchBar.delegate = self
   }
