@@ -1,0 +1,16 @@
+//
+//  ItemSearchBarDelegate.swift
+//  FetchiOSTakeHomeTest
+//
+//  Created by Vincent Cubit on 3/5/24.
+//
+
+import Foundation
+import UIKit
+
+extension ItemsViewController: UISearchBarDelegate {
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    itemsListViewModel.setFilteredItemsListWithSearchText(searchText)
+    tableView.reloadData()
+  }
+}

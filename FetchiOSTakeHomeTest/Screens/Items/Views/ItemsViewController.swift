@@ -58,6 +58,10 @@ final class ItemsViewController: UIViewController {
   private func setupNavigationBar() {
     navigationController?.navigationBar.prefersLargeTitles = true
     title = "Items"
+    
+    navigationItem.searchController = UISearchController(searchResultsController: nil)
+    navigationItem.searchController?.searchBar.placeholder = "Find an item"
+    navigationItem.searchController?.searchBar.delegate = self
   }
   
   private func setupHeader() {

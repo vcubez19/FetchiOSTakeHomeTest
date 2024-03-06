@@ -13,10 +13,16 @@ final class ItemsListViewModel {
   private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier!,
                                      category: String(describing: ItemsListViewModel.self))
   
-  private var itemsList: [Dictionary<Int, [Item]>.Element] = []
+  private var itemsList: [Dictionary<Int, [Item]>.Element] = [] {
+    didSet {
+      filteredItemsList = itemsList
+    }
+  }
   
-  var listsCount: Int {
-    return itemsList.count
+  private var filteredItemsList: [Dictionary<Int, [Item]>.Element] = []
+  
+  var filteredListsCount: Int {
+    return filteredItemsList.count
   }
   
   var fetchItemsFailedListener: ((Bool) -> Void)?
@@ -62,19 +68,23 @@ final class ItemsListViewModel {
   }
   
   func numberOfItemsInListAtIndex(_ index: Int) -> Int {
-    return itemsList[index].value.count
+    return filteredItemsList[index].value.count
   }
   
   func listNameAtIndex(_ list: Int) -> String {
-    let listId = itemsList[list].key
+    let listId = filteredItemsList[list].key
     return "List \(listId)"
   }
   
   func listIdAtIndex(_ list: Int) -> Int {
-    return itemsList[list].key
+    return filteredItemsList[list].key
   }
   
   func itemAtIndexPath(_ list: Int, row: Int) -> String? {
-    return itemsList[list].value[row].name
+    return filteredItemsList[list].value[row].name
+  }
+  
+  func setFilteredItemsListWithSearchText(_ searchText: String) {
+    // set here
   }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 extension ItemsViewController: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
-    return itemsListViewModel.listsCount
+    return itemsListViewModel.filteredListsCount
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
