@@ -32,6 +32,8 @@
 		325D9F512B97E4EF00B97FD6 /* ItemsHeaderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325D9F502B97E4EF00B97FD6 /* ItemsHeaderViewDelegate.swift */; };
 		325D9F562B97EF4F00B97FD6 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325D9F552B97EF4F00B97FD6 /* ItemDetailViewController.swift */; };
 		325D9F5E2B9817F900B97FD6 /* ItemSearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325D9F5D2B9817F900B97FD6 /* ItemSearchBarDelegate.swift */; };
+		3260855E2B98D65C002E769F /* ItemSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3260855D2B98D65C002E769F /* ItemSearchResultsViewController.swift */; };
+		326085612B98D6C5002E769F /* ItemSearchBarPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326085602B98D6C5002E769F /* ItemSearchBarPlaceholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		325D9F502B97E4EF00B97FD6 /* ItemsHeaderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsHeaderViewDelegate.swift; sourceTree = "<group>"; };
 		325D9F552B97EF4F00B97FD6 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		325D9F5D2B9817F900B97FD6 /* ItemSearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSearchBarDelegate.swift; sourceTree = "<group>"; };
+		3260855D2B98D65C002E769F /* ItemSearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSearchResultsViewController.swift; sourceTree = "<group>"; };
+		326085602B98D6C5002E769F /* ItemSearchBarPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSearchBarPlaceholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 			children = (
 				325D9F402B96D69500B97FD6 /* SharedViews */,
 				325D9F1D2B96923E00B97FD6 /* Items */,
+				3260855B2B98D631002E769F /* ItemSearchResults */,
 				325D9F532B97EF3500B97FD6 /* ItemDetail */,
 			);
 			path = Screens;
@@ -172,6 +177,7 @@
 			children = (
 				325D9EEF2B9691DD00B97FD6 /* ItemsViewController.swift */,
 				325D9F5D2B9817F900B97FD6 /* ItemSearchBarDelegate.swift */,
+				3260855F2B98D6AC002E769F /* ItemsSearchBar */,
 				325D9F522B97E7D100B97FD6 /* ItemsTableView */,
 				325D9F492B97BAEE00B97FD6 /* ItemsHeader */,
 			);
@@ -293,6 +299,30 @@
 				325D9F552B97EF4F00B97FD6 /* ItemDetailViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		3260855B2B98D631002E769F /* ItemSearchResults */ = {
+			isa = PBXGroup;
+			children = (
+				3260855C2B98D64E002E769F /* View */,
+			);
+			path = ItemSearchResults;
+			sourceTree = "<group>";
+		};
+		3260855C2B98D64E002E769F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3260855D2B98D65C002E769F /* ItemSearchResultsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3260855F2B98D6AC002E769F /* ItemsSearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				326085602B98D6C5002E769F /* ItemSearchBarPlaceholder.swift */,
+			);
+			path = ItemsSearchBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,6 +466,7 @@
 				325D9F562B97EF4F00B97FD6 /* ItemDetailViewController.swift in Sources */,
 				325D9F422B96D6DC00B97FD6 /* RefreshView.swift in Sources */,
 				325D9F3D2B96A13700B97FD6 /* FetchAPI.swift in Sources */,
+				326085612B98D6C5002E769F /* ItemSearchBarPlaceholder.swift in Sources */,
 				325D9F2B2B96991500B97FD6 /* ItemsListViewModel.swift in Sources */,
 				325D9F4F2B97BDB800B97FD6 /* ListsCollectionViewDataSource.swift in Sources */,
 				325D9F4D2B97BDAB00B97FD6 /* ListsCollectionViewDelegate.swift in Sources */,
@@ -447,6 +478,7 @@
 				325D9F512B97E4EF00B97FD6 /* ItemsHeaderViewDelegate.swift in Sources */,
 				325D9F362B969FCA00B97FD6 /* HTTPScheme.swift in Sources */,
 				325D9EEC2B9691DD00B97FD6 /* AppDelegate.swift in Sources */,
+				3260855E2B98D65C002E769F /* ItemSearchResultsViewController.swift in Sources */,
 				325D9EEE2B9691DD00B97FD6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

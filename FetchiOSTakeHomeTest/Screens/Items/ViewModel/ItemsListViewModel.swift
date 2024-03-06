@@ -14,10 +14,22 @@ final class ItemsListViewModel {
                                      category: String(describing: ItemsListViewModel.self))
   
   /// The original list of items downloaded from the server.
-  private var itemsList: [Dictionary<Int, [Item]>.Element] = []
+  private var itemsList: [Dictionary<Int, [Item]>.Element] = [] {
+    didSet {
+      flattenedItems = itemsList.flatMap({ $0.value })
+      filteredItems = flattenedItems
+    }
+  }
+  
+  /// All items from the server.
+  private var flattenedItems: [Item] = []
   
   /// The items used for displaying search results.
   private var filteredItems: [Item] = []
+  
+  var filteredItemsCount: Int {
+    return filteredItems.count
+  }
   
   var itemListsCount: Int {
     return itemsList.count
@@ -85,7 +97,17 @@ final class ItemsListViewModel {
     return itemsList[list].value[row].name
   }
   
+  func filteredItemAtIndex(_ row: Int) -> String? {
+    return filteredItems[row].name
+  }
+  
   func setFilteredItemsListWithSearchText(_ searchText: String) {
-    // set here
+    guard let itemNumberFromSearchText = Int(searchText) else { return }
+    guard !searchText.isEmpty else {
+      filteredItems = flattenedItems
+      return
+    }
+    
+    filteredItems = flattenedItems.filter({ $0.itemNameNumber == itemNumberFromSearchText })
   }
 }

@@ -43,6 +43,8 @@ final class ItemsViewController: UIViewController {
   
   private var itemsHeaderView: ItemsHeaderView!
   
+  var itemSearchResultsController: ItemSearchResultsViewController!
+  
   // MARK: View lifecycle
   
   override func viewDidLoad() {
@@ -59,11 +61,12 @@ final class ItemsViewController: UIViewController {
     navigationController?.navigationBar.backgroundColor = .systemBackground
     navigationController?.navigationBar.prefersLargeTitles = true
     title = "Items"
+
+    itemSearchResultsController = ItemSearchResultsViewController(itemsListViewModel: itemsListViewModel)
     
-    // TODO: Make new controller that shows searched items
-    
-    navigationItem.searchController = UISearchController(searchResultsController: nil)
+    navigationItem.searchController = UISearchController(searchResultsController: itemSearchResultsController)
     navigationItem.searchController?.searchBar.placeholder = "Find an item"
+    navigationItem.searchController?.searchBar.keyboardType = .numberPad
     navigationItem.searchController?.searchBar.delegate = self
   }
   
