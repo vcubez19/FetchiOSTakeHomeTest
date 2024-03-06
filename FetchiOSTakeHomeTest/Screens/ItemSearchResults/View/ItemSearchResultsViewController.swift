@@ -13,6 +13,19 @@ final class ItemSearchResultsViewController: UITableViewController {
   
   private let itemsListViewModel: ItemsListViewModel
   
+  private let noSearchResultsView: UIButton = {
+    var noSearchResultsViewConfiguration = UIButton.Configuration.tinted()
+    noSearchResultsViewConfiguration.cornerStyle = .capsule
+    
+    let noSearchResultsView = UIButton()
+    noSearchResultsView.isUserInteractionEnabled = false
+    noSearchResultsView.isHidden = true
+    noSearchResultsView.configuration = noSearchResultsViewConfiguration
+    noSearchResultsView.translatesAutoresizingMaskIntoConstraints = false
+    
+    return noSearchResultsView
+  }()
+  
   // MARK: View lifecycle
   
   init(itemsListViewModel: ItemsListViewModel) {
@@ -33,6 +46,28 @@ final class ItemSearchResultsViewController: UITableViewController {
   
   private func setupView() {
     tableView.register(ItemTableViewCell.self, forCellReuseIdentifier: ItemTableViewCell.reuseID)
+    
+    itemsListViewModel.noSearchResultsListener = { [weak self] empty in
+      
+      guard let strongSelf = self else { return }
+      
+      DispatchQueue.main.async {
+        strongSelf.noSearchResultsView.isHidden = !empty
+        
+        if empty {
+          let searchText = strongSelf.itemsListViewModel.getSearchBarText()
+          strongSelf.noSearchResultsView.configuration?.title = "No results for \(searchText)"
+        }
+      }
+    }
+    
+    view.addSubview(noSearchResultsView)
+    NSLayoutConstraint.activate([
+      noSearchResultsView.topAnchor.constraint(equalTo: view.topAnchor, constant: 44.0),
+      noSearchResultsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      noSearchResultsView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 40.0),
+      noSearchResultsView.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: -40.0)
+    ])
   }
   
   // MARK: Table view data source
