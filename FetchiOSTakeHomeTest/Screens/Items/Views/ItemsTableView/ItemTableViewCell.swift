@@ -25,11 +25,24 @@ final class ItemTableViewCell: UITableViewCell {
     return itemNameLabel
   }()
   
+  private let itemListNameView: UIButton = {
+    var itemListNameViewConfiguration = UIButton.Configuration.tinted()
+    itemListNameViewConfiguration.cornerStyle = .capsule
+    
+    let itemListNameView = UIButton()
+    itemListNameView.isHidden = true
+    itemListNameView.isUserInteractionEnabled = false
+    itemListNameView.configuration = itemListNameViewConfiguration
+    itemListNameView.translatesAutoresizingMaskIntoConstraints = false
+    
+    return itemListNameView
+  }()
+    
   // MARK: View lifecycle
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    layoutView()
+    setupView()
   }
   
   required init?(coder: NSCoder) {
@@ -38,16 +51,25 @@ final class ItemTableViewCell: UITableViewCell {
   
   // MARK: Methods
   
-  private func layoutView() {
+  private func setupView() {
     contentView.addSubview(itemNameLabel)
-    
+    contentView.addSubview(itemListNameView)
+        
     NSLayoutConstraint.activate([
       itemNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0),
-      itemNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+      itemNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+      
+      itemListNameView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
+      itemListNameView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
     ])
   }
   
   func setItemText(_ itemText: String?) {
     itemNameLabel.text = itemText
+  }
+  
+  func setItemListName(_ listName: String?) {
+    itemListNameView.isHidden = false
+    itemListNameView.configuration?.title = listName
   }
 }

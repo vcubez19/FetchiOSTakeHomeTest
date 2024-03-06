@@ -93,12 +93,16 @@ final class ItemsListViewModel {
     return itemsList[list].key
   }
   
-  func itemAtIndexPath(_ list: Int, row: Int) -> String? {
-    return itemsList[list].value[row].name
+  func listLocationForItem(_ item: Item) -> String? {
+    return "In list \(item.listId)"
   }
   
-  func filteredItemAtIndex(_ row: Int) -> String? {
-    return filteredItems[row].name
+  func itemAtIndexPath(_ list: Int, row: Int) -> Item {
+    return itemsList[list].value[row]
+  }
+  
+  func filteredItemAtIndex(_ row: Int) -> Item {
+    return filteredItems[row]
   }
   
   func setFilteredItemsListWithSearchText(_ searchText: String) {

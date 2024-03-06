@@ -20,9 +20,9 @@ extension ItemsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: ItemTableViewCell.reuseID, for: indexPath) as! ItemTableViewCell
     
-    let itemName = itemsListViewModel.itemAtIndexPath(indexPath.section, row: indexPath.row)
+    let item = itemsListViewModel.itemAtIndexPath(indexPath.section, row: indexPath.row)
     
-    cell.setItemText(itemName)
+    cell.setItemText(item.name)
     
     return cell
   }
