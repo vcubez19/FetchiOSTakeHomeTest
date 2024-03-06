@@ -86,6 +86,7 @@ final class ItemsViewController: UIViewController {
   private func setupView() {
 
     view.backgroundColor = .systemBackground
+    
     view.addSubview(tableView)
     view.addSubview(itemsLoadingIndicatorView)
     view.addSubview(refreshView)

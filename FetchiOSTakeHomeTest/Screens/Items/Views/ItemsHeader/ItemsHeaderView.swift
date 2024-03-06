@@ -11,6 +11,9 @@ protocol ItemsHeaderViewDelegate: AnyObject {
   func didTapListWithId(_ id: Int)
 }
 
+/// A view that contains a horizontally scrolling list of all
+/// list names downloaded from the server.
+
 final class ItemsHeaderView: UIView {
   
   // MARK: Stored properties

@@ -7,6 +7,8 @@
 
 import UIKit
 
+/// A cell that displays an Item's name from the server.
+
 final class ItemTableViewCell: UITableViewCell {
   
   // MARK: Stored properties

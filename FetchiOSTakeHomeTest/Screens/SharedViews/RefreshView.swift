@@ -12,6 +12,8 @@ protocol RefreshViewDelegate: AnyObject {
   func didTapRefreshButton(_ button: UIButton)
 }
 
+/// A view that shows a label on top of a refresh button.
+
 final class RefreshView: UIView {
   
   // MARK: Stored properties

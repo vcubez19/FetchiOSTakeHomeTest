@@ -8,6 +8,9 @@
 import Foundation
 
 struct APIService {
+  
+  /// Builds and returns URL components for an API endpoint.
+  
   static func buildURL(endpoint: API) -> URLComponents {
     var components = URLComponents()
     components.scheme = endpoint.scheme.rawValue
@@ -17,6 +20,8 @@ struct APIService {
     
     return components
   }
+  
+  /// Sends a network request and tries to decode and return the response data.
   
   static func sendRequest<T: Decodable>(api: API, decode: T.Type) async throws -> T {
     guard let url = buildURL(endpoint: api).url else {

@@ -171,9 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				325D9EEF2B9691DD00B97FD6 /* ItemsViewController.swift */,
-				325D9F232B9696A800B97FD6 /* ItemsTableViewDelegate.swift */,
-				325D9F252B9696B900B97FD6 /* ItemsTableViewDataSource.swift */,
-				325D9F502B97E4EF00B97FD6 /* ItemsHeaderViewDelegate.swift */,
 				325D9F5D2B9817F900B97FD6 /* ItemSearchBarDelegate.swift */,
 				325D9F522B97E7D100B97FD6 /* ItemsTableView */,
 				325D9F492B97BAEE00B97FD6 /* ItemsHeader */,
@@ -263,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				325D9F472B97B74300B97FD6 /* ItemsHeaderView.swift */,
+				325D9F502B97E4EF00B97FD6 /* ItemsHeaderViewDelegate.swift */,
 				325D9F4A2B97BB0C00B97FD6 /* ListCollectionViewCell.swift */,
 				325D9F4C2B97BDAB00B97FD6 /* ListsCollectionViewDelegate.swift */,
 				325D9F4E2B97BDB800B97FD6 /* ListsCollectionViewDataSource.swift */,
@@ -274,6 +272,8 @@
 			isa = PBXGroup;
 			children = (
 				325D9F452B979E5200B97FD6 /* ListSectionView.swift */,
+				325D9F232B9696A800B97FD6 /* ItemsTableViewDelegate.swift */,
+				325D9F252B9696B900B97FD6 /* ItemsTableViewDataSource.swift */,
 				325D9F212B9694B500B97FD6 /* ItemTableViewCell.swift */,
 			);
 			path = ItemsTableView;

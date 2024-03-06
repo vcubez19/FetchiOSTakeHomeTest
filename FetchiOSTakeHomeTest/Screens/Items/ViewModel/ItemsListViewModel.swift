@@ -13,14 +13,17 @@ final class ItemsListViewModel {
   private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier!,
                                      category: String(describing: ItemsListViewModel.self))
   
+  /// The original list of items downloaded from the server.
   private var itemsList: [Dictionary<Int, [Item]>.Element] = []
   
+  /// The items used for displaying search results.
   private var filteredItems: [Item] = []
   
   var itemListsCount: Int {
     return itemsList.count
   }
   
+  /// Tells the view that fetching items failed or not.
   var fetchItemsFailedListener: ((Bool) -> Void)?
   
   var fetchItemsFailed: Bool = false {
@@ -40,12 +43,14 @@ final class ItemsListViewModel {
     }
   }
   
+  /// Processes an array of items. Sorts the final structure of items by
+  /// listId and then by name. Will discard any items that have
+  /// null or empty names.
   private func createItemsList(_ items: [Item]) -> [Dictionary<Int, [Item]>.Element] {
     var groupedItemsDictionary: [Int: [Item]] = [:]
 
     for item in items {
       
-      // Excluding Items with null or empty names.
       guard let name = item.name, !name.isEmpty else {
         continue
       }

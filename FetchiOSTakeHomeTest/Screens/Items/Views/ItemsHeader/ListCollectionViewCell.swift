@@ -7,6 +7,8 @@
 
 import UIKit
 
+/// A view that displays a list's name.
+
 final class ListCollectionViewCell: UICollectionViewCell {
   
   // MARK: Stored properties

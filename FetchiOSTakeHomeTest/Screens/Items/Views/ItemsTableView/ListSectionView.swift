@@ -7,6 +7,9 @@
 
 import UIKit
 
+/// A table view section header that displays a list title
+/// and the number of items in that list.
+
 final class ListSectionView: UITableViewHeaderFooterView {
 
   // MARK: Stored properties
