@@ -11,6 +11,7 @@ import UIKit
 extension ItemsViewController: UISearchBarDelegate {
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     itemsListViewModel.setFilteredItemsListWithSearchText(searchText)
+    itemsListViewModel.setSearchBarText(searchText)
     itemSearchResultsController.tableView.reloadData()
   }
   

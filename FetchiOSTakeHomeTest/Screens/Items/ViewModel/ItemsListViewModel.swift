@@ -22,6 +22,17 @@ final class ItemsListViewModel {
   /// The items used for displaying search results.
   private var filteredItems: [Item] = []
   
+  private var searchText: String = "" {
+    didSet {
+      let cleanedSearchText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+      noSearchResultsListener?(!cleanedSearchText.isEmpty && filteredItems.isEmpty)
+    }
+  }
+  
+  /// Tells the search results view that no items were found
+  /// when searching.
+  var noSearchResultsListener: ((Bool) -> Void)?
+  
   var filteredItemsCount: Int {
     return filteredItems.count
   }
@@ -107,5 +118,13 @@ final class ItemsListViewModel {
     guard !searchText.isEmpty else { return }
     
     filteredItems = allItems.filter({ $0.itemNameNumber == itemNumberFromSearchText })
+  }
+  
+  func getSearchBarText() -> String {
+    return searchText
+  }
+  
+  func setSearchBarText(_ searchBarText: String) {
+    searchText = searchBarText
   }
 }
