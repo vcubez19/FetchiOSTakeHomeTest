@@ -14,15 +14,10 @@ final class ItemsListViewModel {
                                      category: String(describing: ItemsListViewModel.self))
   
   /// The original list of items downloaded from the server.
-  private var itemsList: [Dictionary<Int, [Item]>.Element] = [] {
-    didSet {
-      flattenedItems = itemsList.flatMap({ $0.value })
-      filteredItems = flattenedItems
-    }
-  }
+  private var itemsList: [Dictionary<Int, [Item]>.Element] = []
   
   /// All items from the server.
-  private var flattenedItems: [Item] = []
+  private var allItems: [Item] = []
   
   /// The items used for displaying search results.
   private var filteredItems: [Item] = []
@@ -48,6 +43,8 @@ final class ItemsListViewModel {
     do {
       let itemsFromServer = try await APIService.sendRequest(api: FetchAPI.hiring, decode: [Item].self)
       itemsList = createItemsList(itemsFromServer)
+      allItems = itemsFromServer
+      filteredItems = itemsFromServer
       fetchItemsFailed = false
     } catch {
       Self.logger.error("Failed to download items from server. Error: \(String(describing: error))")
@@ -109,6 +106,6 @@ final class ItemsListViewModel {
     guard let itemNumberFromSearchText = Int(searchText) else { return }
     guard !searchText.isEmpty else { return }
     
-    filteredItems = flattenedItems.filter({ $0.itemNameNumber == itemNumberFromSearchText })
+    filteredItems = allItems.filter({ $0.itemNameNumber == itemNumberFromSearchText })
   }
 }
