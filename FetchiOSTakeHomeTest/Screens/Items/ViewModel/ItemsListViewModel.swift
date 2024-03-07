@@ -13,10 +13,9 @@ final class ItemsListViewModel {
   private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier!,
                                      category: String(describing: ItemsListViewModel.self))
   
-  /// The original list of items downloaded from the server.
+  /// The organized list of items downloaded from the server.
   private var itemsList: [Dictionary<Int, [Item]>.Element] = []
   
-  /// All items from the server.
   private var allItems: [Item] = []
   
   /// The items used for displaying search results.
@@ -113,6 +112,7 @@ final class ItemsListViewModel {
     return filteredItems[row]
   }
   
+  /// Sets filtered items to items filtered by itemNameNumber
   func setFilteredItemsListWithSearchText(_ searchText: String) {
     guard let itemNumberFromSearchText = Int(searchText) else { return }
     guard !searchText.isEmpty else { return }
