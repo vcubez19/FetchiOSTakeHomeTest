@@ -83,10 +83,10 @@ final class ItemsListViewModel {
     
     // Sort keys and sort values by name
     let sortedItems = groupedItemsDictionary.mapValues { listItems in
-        var sortedListItems = listItems
-        sortedListItems.sort { $0.itemNameNumber < $1.itemNameNumber }
-        
-        return sortedListItems
+      var sortedListItems = listItems
+      sortedListItems.sort { $0.itemNameNumber < $1.itemNameNumber }
+      
+      return sortedListItems
     }.sorted { $0.key < $1.key }
 
     return sortedItems
