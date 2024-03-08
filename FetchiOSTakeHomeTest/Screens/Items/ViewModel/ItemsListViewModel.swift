@@ -23,8 +23,8 @@ final class ItemsListViewModel {
   
   private var searchText: String = "" {
     didSet {
-      let cleanedSearchText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-      noSearchResultsListener?(!cleanedSearchText.isEmpty && filteredItems.isEmpty)
+      setFilteredItemsListWithSearchText(searchText)
+      noSearchResultsListener?(!searchText.isEmpty && filteredItems.isEmpty)
     }
   }
   
@@ -114,8 +114,10 @@ final class ItemsListViewModel {
   
   /// Sets filtered items to items filtered by itemNameNumber
   func setFilteredItemsListWithSearchText(_ searchText: String) {
-    guard let itemNumberFromSearchText = Int(searchText) else { return }
     guard !searchText.isEmpty else { return }
+    
+    // Force unwrap is ok because keyboard is the number pad.
+    let itemNumberFromSearchText = Int(searchText)!
     
     filteredItems = allItems.filter({ $0.itemNameNumber == itemNumberFromSearchText })
   }
