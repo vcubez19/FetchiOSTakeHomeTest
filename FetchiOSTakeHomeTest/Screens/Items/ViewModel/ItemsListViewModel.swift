@@ -105,7 +105,7 @@ final class ItemsListViewModel {
     return itemsList[list].key
   }
   
-  func listLocationForItem(_ item: Item) -> String? {
+  func listLocationForItem(_ item: Item) -> String {
     return "In list \(item.listId)"
   }
   
